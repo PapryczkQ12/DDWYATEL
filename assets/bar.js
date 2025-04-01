@@ -1,20 +1,8 @@
 
 var params = new URLSearchParams(window.location.search);
 
-function sendTo(url) {
-    // Dodaj obsługę nowych nazw plików
-    const pageMap = {
-        'home': 'home.html',
-        'documents': 'documents.html',
-        'services': 'services.html',
-        'qr': 'qr.html',
-        'more': 'more.html',
-        'card': 'id.html',  // Stare przekierowanie
-        'login': 'login.html'
-    };
-    
-    const targetPage = pageMap[url] || url;
-    location.href = targetPage + (params.toString() ? '?' + params.toString() : '');
+function sendTo(url){
+    location.href = `/${url}?` + params;
 }
 
 document.querySelectorAll(".bottom_element_grid").forEach((element) => {
@@ -43,4 +31,12 @@ function getMobileOperatingSystem() {
   
   if (getMobileOperatingSystem() == 2){
       document.querySelector(".bottom_bar").style.height = "70px"
+}
+
+function delay(time) {
+    return new Promise(resolve => setTimeout(resolve, time));
+}
+
+function getRandom(min, max) {
+    return parseInt(Math.random() * (max - min) + min);
 }
